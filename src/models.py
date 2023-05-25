@@ -28,7 +28,7 @@ class User(Base):
 class Post(Base):
     __tablename__ = 'post'
     id = Column(Integer , primary_key=True)
-    user_id = Column(Integer , ForeignKey('user.id))
+    user_id = Column(Integer , ForeignKey('user.id'))
     media = relationship(Media)
     comment = relationship(Comment)
 
