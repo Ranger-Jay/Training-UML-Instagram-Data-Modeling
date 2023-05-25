@@ -14,6 +14,31 @@ class Follower(Base):
     user_from_id = Column(Integer, ForeignKey('user.id'))
     user_to_id = Column(Integer, ForeignKey('user.id'))
 
+class Comment(Base): 
+    __tablename__ = 'comment'
+    id = Column(Integer , primary_key=True)
+    comment_text = Column(String(250))
+    author_id = Column(Integer , ForeignKey('user.id'))
+    post_id = Column(Integer , ForeignKey('post.id'))
+
+    def to_dict(self):
+        return {}
+
+
+class Media(Base):
+    __tablename__ = 'media'
+    id = Column(Integer , primary_key=True)
+    media_type = Column(Integer) 
+    url = Column(String(250)) ##string used as placeholder until I can figure out enum
+    post_id = Column(Integer, ForeignKey('post.id'))
+
+class Post(Base):
+    __tablename__ = 'post'
+    id = Column(Integer , primary_key=True)
+    user_id = Column(Integer , ForeignKey('user.id'))
+    media = relationship(Media)
+    comment = relationship(Comment)
+
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
@@ -25,32 +50,6 @@ class User(Base):
     comment = relationship(Comment)
     post = relationship(Post)
 
-class Post(Base):
-    __tablename__ = 'post'
-    id = Column(Integer , primary_key=True)
-    user_id = Column(Integer , ForeignKey('user.id'))
-    media = relationship(Media)
-    comment = relationship(Comment)
-
-class Media(Base):
-    __tablename__ = 'media'
-    id = Column(Integer , primary_key=True)
-    media_type = Column(Integer) 
-    url = Column(String(250)) ##string used as placeholder until I can figure out enum
-    post_id = Column(Integer, ForeignKey('post.id'))
-
-class Comment(Base): 
-    __tablename__ = 'comment'
-    id = Column(Integer , primary_key=True)
-    comment_text = Column(String(250))
-    author_id = Column(Integer , ForeignKey('user.id'))
-    post_id = Column(Integer , ForeignKey('post.id'))
-
-
-
-
-    def to_dict(self):
-        return {}
 
 ## Draw from SQLAlchemy base
 try:
