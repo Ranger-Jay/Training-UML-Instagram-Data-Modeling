@@ -10,13 +10,13 @@ Base = declarative_base()
 
 class Follower(Base):
     __tablename__ = 'follower'
-    user_from_id = Column(Integer , primary_key=True)
+    user_from_id = Column(Integer , foreign_key=True)
     user_to_id = Column(Integer)
 
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
-    user_from_id = Column(Integer, ForeignKey('follower.user_from_id','follower.user_to_id'))
+    user_from_id = Column(Integer, ForeignKey('follower.user_from_id'))
     
     username = Column(String(250) , nullable=False)
     firstname = Column(String(250) , nullable=False)
