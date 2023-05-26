@@ -29,7 +29,7 @@ class Media(Base):
     __tablename__ = 'media'
     id = Column(Integer , primary_key=True)
     media_type = Column(Integer) 
-    url = Column(String(250)) ##string used as placeholder until I can figure out enum
+    url = Column(String(250)) ##ok 
     post_id = Column(Integer, ForeignKey('post.id'))
 
 class Post(Base):
