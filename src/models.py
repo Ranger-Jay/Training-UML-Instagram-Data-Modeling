@@ -51,7 +51,7 @@ class User(Base):
     post = relationship(Post)
 
 
-## Draw from SQLAlchemy base
+## Draw from SQLAlchemy base. finished.
 try:
     result = render_er(Base, 'diagram.png')
     print("Success! Check the diagram.png file")
